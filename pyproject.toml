@@ -9,6 +9,7 @@ authors = [
 ]
 dependencies = [
     "kedro>=0.19.13",
+    "kedro-viz>=11.0.2",
 ]
 
 [dependency-groups]
