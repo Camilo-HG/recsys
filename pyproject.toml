@@ -8,11 +8,61 @@ authors = [
     { name = "Camilo-HG", email = "22363097+Camilo-HG@users.noreply.github.com" }
 ]
 dependencies = [
-    "kedro>=0.19.13",
+    "kedro[jupyter]>=0.19.13",
+    "kedro-datasets[matplotlib-matplotlibwriter,pandas-csvdataset,pandas-exceldataset,pandas-parquetdataset,plotly-jsondataset,plotly-plotlydataset]>=7.0.0",
     "kedro-viz>=11.0.2",
+    "scikit-learn>=1.7.0",
+    "seaborn>=0.13.2",
 ]
 
 [dependency-groups]
 dev = [
     "pre-commit>=4.2.0",
+    "pytest>=8.4.0",
+    "pytest-cov>=6.2.1",
+    "pytest-mock>=3.14.1",
+    "ruff>=0.11.13",
 ]
+
+[project.scripts]
+rec-sys = "rec_sys.__main__:main"
+
+[tool.kedro]
+package_name = "rec_sys"
+project_name = "Rec Sys"
+kedro_init_version = "0.19.13"
+tools = "['Linting', 'Testing', 'Custom Logging', 'Data Structure']"
+example_pipeline = "True"
+source_dir = "src"
+
+[tool.ruff]
+line-length = 88
+show-fixes = true
+lint.select = [
+    "F",
+    "W",
+    "E",
+    "I",
+    "UP",
+    "PL",
+    "T201",
+]
+lint.ignore = [
+    "E501",
+]
+
+[project.entry-points."kedro.hooks"]
+
+[tool.pytest.ini_options]
+addopts = "--cov-report term-missing --cov src/rec_sys -ra"
+
+[tool.coverage.report]
+fail_under = 0
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
