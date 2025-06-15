@@ -1,11 +1,18 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import create_model_input_table, preprocess_companies, preprocess_shuttles
+from .nodes import (
+    create_model_input_table,
+    preprocess_companies,
+    preprocess_delivery_data,
+    preprocess_movies_data,
+    preprocess_shuttles,
+)
 
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
         [
+            ### --- Examples
             node(
                 func=preprocess_companies,
                 inputs="companies",
@@ -23,6 +30,26 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs=["preprocessed_shuttles", "preprocessed_companies", "reviews"],
                 outputs="model_input_table",
                 name="create_model_input_table_node",
+            ),
+            ### --- Ours
+            node(
+                func=preprocess_movies_data,
+                inputs=[
+                    "movies",
+                    "ratings",
+                ],
+                outputs=["ratings_with_titles_df_encoded", "movies_encoder"],
+                name="preprocess_movies_node",
+                tags=["recsys"],
+            ),
+            node(
+                func=preprocess_delivery_data,
+                inputs=[
+                    "delivery",
+                ],
+                outputs=["delivery_df_encoded", "delivery_encoder"],
+                name="preprocess_delivery_node",
+                tags=["recsys"],
             ),
         ]
     )

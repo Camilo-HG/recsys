@@ -1,0 +1,8 @@
+# Define the URL and the target directory for extraction
+movie_lens_url: "https://files.grouplens.org/datasets/movielens/ml-latest-small.zip"
+movie_lens_extract_to_dir: "data/01_raw/movielens_data"
+movie_lens_omit_verification: False
+
+food_delivery_url: "https://www.kaggle.com/api/v1/datasets/download/benroshan/online-food-delivery-preferencesbangalore-region"
+food_delivery_extract_to_dir: "data/01_raw/online_food_delivery_preferences"
+food_delivery_omit_verification: True
