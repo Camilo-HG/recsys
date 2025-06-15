@@ -6,15 +6,31 @@
 
 Hands on Recommender Systems
 
-## Problem statement
+## Run kedro
 
-Notebook Structure
+First generate raw data:
 
-1. Problem & Data - Problem definition and data generation strategy
-2. Model Development - Technical implementation and methodology
-3. User Interface - Application interface and user experience design
-4. Results & Analysis - Performance evaluation and insights
-5. Documentation - Technical details and future considerations
+```shell
+kedro run --tags raw
+```
+
+Then run:
+
+```shell
+kedro run --tags recsys
+```
+
+To see the pipelines implemented, run:
+
+```shell
+kedro viz
+```
+
+and select only `Raw` and `Recsys` tags. You should see:
+
+![kedro viz](notebooks/Screenshot.png)
+
+The rest of the pipelines implemented are examples.
 
 ## Technical Documentation
 
@@ -26,7 +42,12 @@ In order to showcase a project with a high technical level, the following tools 
 - [Kedro](https://docs.kedro.org/en/stable/introduction/index.html):  An open-source Python framework to create reproducible, maintainable, and modular data science code. It uses software engineering best practices to help you build production-ready data science pipelines.
 - Formatting and linting with [Ruff](https://docs.astral.sh/ruff/tutorial/#getting-started): An extremely fast Python linter and code formatter, written in Rust. Formatting and linting improve code quality by ensuring consistent style and identifying potential errors or problematic patterns, making the code more readable, maintainable, and less prone to bugs.
 - [Logging](https://docs.kedro.org/en/stable/logging/index.html): Kedro uses [Python’s logging library](https://docs.python.org/3/library/logging.html). Configuration is provided as a dictionary according to the [Python logging configuration schema](https://docs.python.org/3/library/logging.config.html#logging-config-dictschema) in Kedro’s default logging configuration `conf/logging.yml`
-- TODO: Testing
+- TODO:
+  - Implement [Testing](https://docs.kedro.org/en/stable/development/automated_testing.html#set-up-automated-testing-with-pytest)
+  - Integrate with [Great Expectations](https://docs.kedro.org/en/stable/hooks/index.html#hooks)
+  - Integrate with [MLflow](https://docs.kedro.org/en/stable/integrations/mlflow.html)
+  - Integrate with [DVC](https://docs.kedro.org/en/stable/integrations/kedro_dvc_versioning.html)
+  - Implement [Advanced deployment](https://docs.kedro.org/en/stable/deployment/index.html)
 
 ### Rules and guidelines
 
@@ -236,6 +257,6 @@ You can use Rich’s console markup in your logging calls:
 logger.error("[bold red blink]Important error message![/]", extra={"markup": True})
 ```
 
->[!INFO]
+>[!TIP]
 >
 > More info: [Kedro logging](https://docs.kedro.org/en/stable/logging/index.html)

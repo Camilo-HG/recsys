@@ -39,6 +39,7 @@
 # (transcoding), templating and a way to reuse arguments that are frequently repeated. See more here:
 # https://docs.kedro.org/en/stable/data/data_catalog.html
 
+### --- Examples
 companies:
   type: pandas.CSVDataset
   filepath: data/01_raw/companies.csv
@@ -94,3 +95,32 @@ dummy_confusion_matrix:
   type: matplotlib.MatplotlibWriter
   filepath: data/08_reporting/dummy_confusion_matrix.png
   versioned: true
+
+### --- Ours
+ratings:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/movielens_data/ml-latest-small/ratings.csv
+
+movies:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/movielens_data/ml-latest-small/movies.csv
+
+delivery:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/online_food_delivery_preferences/onlinedeliverydata.csv
+
+ratings_with_titles_df_encoded:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/ratings_with_titles_df_encoded.parquet
+
+movies_encoder:
+  type: pickle.PickleDataset
+  filepath: data/02_intermediate/movies_encoder.pickle
+
+delivery_df_encoded:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/delivery_df_encoded.parquet
+
+delivery_encoder:
+  type: pickle.PickleDataset
+  filepath: data/02_intermediate/delivery_encoder.pickle
